@@ -15,6 +15,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json({extended: false}));
 app.use("/images", express.static(path.join("images")));
 app.use("/api/user", userRoutes, profileRoutes, postRoutes);
+// app.get('/api/user',(req,res) => {
+//     res.json({
+//         msg:"Welcome to API v1"    
+//     });
+// })
 // app.use("/api/user/profile")
 
 module.exports  = app;
