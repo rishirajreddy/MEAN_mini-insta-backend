@@ -9,7 +9,7 @@ exports.createPost =async(req,res) => {
     const url = req.protocol + "://" + req.get("host");
     const user = await User.findOne({username: req.decoded.username});
     const dp = user.get('profile.dp')
-    let currenTime = format(new Date(), "yy-mm-dd HH:mm:ss");
+    let currenTime = new Date().toLocaleTimeString();
 
     Post.findOne({username: req.decoded.username})
     .then((user) => {
@@ -45,14 +45,14 @@ exports.createPost =async(req,res) => {
                             dp:dp,
                             title: req.body.title,
                             caption: req.body.caption,
-                            createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+                            createdAt: format(new Date(), 'yy-MM-dd HH:mm:ss'),
                             image: url + "/images/" + req.file.filename
                         }
                     }
                 }
                 )
                 .then(() => {
-                    res.status(200).json({msg:"Post added Successfully"})
+                    res.status(200).json({msg:"Post added Successfully",date: currenTime})
                 })
                 .catch(err => {
                     console.log(err);
