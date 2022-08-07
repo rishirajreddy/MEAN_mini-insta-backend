@@ -38,11 +38,11 @@ const Post = mongoose.Schema({
         },
         createdAt: {
             type:String,
-            default: Date
+            default: format(new Date(), 'yyyy-MM-dd HH:mm:ss')
         },
         updatedAt: {
             type:String,
-            default : Date
+            default : format(new Date(), 'yyyy-MM-dd HH:mm:ss')
         },
         likedBy: [
             {

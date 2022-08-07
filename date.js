@@ -43,4 +43,4 @@ const data = [
 ]
 
 my = "rishi";
-console.log(new Date().toLocaleTimeString());
+console.log(Date.now().toString());

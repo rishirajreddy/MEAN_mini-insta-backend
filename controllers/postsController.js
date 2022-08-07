@@ -9,7 +9,7 @@ exports.createPost =async(req,res) => {
     const url = req.protocol + "://" + req.get("host");
     const user = await User.findOne({username: req.decoded.username});
     const dp = user.get('profile.dp')
-    let currenTime = new Date().toLocaleTimeString();
+    let currenTime = Date.now();
 
     Post.findOne({username: req.decoded.username})
     .then((user) => {
