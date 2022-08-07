@@ -45,7 +45,7 @@ exports.createPost =async(req,res) => {
                             dp:dp,
                             title: req.body.title,
                             caption: req.body.caption,
-                            createdAt: format(new Date(), 'yy-MM-dd HH:mm:ss'),
+                            createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
                             image: url + "/images/" + req.file.filename
                         }
                     }
