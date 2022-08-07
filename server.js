@@ -1,10 +1,6 @@
 const app = require("./index");
 // const debug = require("debug")("node-angular");
-const http = require("http").Server(app);
-
-const io = require("socket.io")
-
-const socket = io(http);
+const http = require("http");
 
 const normalizePort = val => {
     var port = parseInt(val, 10);
@@ -40,22 +36,13 @@ const onError = error => {
   const onListening = () => {
     const addr = server.address();
     const bind = typeof port === "string" ? "pipe " + port : "port " + port;
-    // debug("Listening on " + bind);
-    console.log("Listening on"+ bind);
+    console.log("Listening on " + bind);
   };
 
-  const port = normalizePort(process.env.PORT || "3000");
+  const port = normalizePort(process.env.PORT || "5000");
   app.set("port", port);
 
-// const server = http.createServer(app);
-// server.on("error", onError);
-// server.on("listening", onListening);
-// server.listen(port);
-
-socket.on("connection", (socket) => {
-    console.log("user connected");
-})
-
-http.listen("3000", () => {
-    console.log("Conncted to port 3000");
-})
+const server = http.createServer(app);
+server.on("error", onError);
+server.on("listening", onListening);
+server.listen(port);
