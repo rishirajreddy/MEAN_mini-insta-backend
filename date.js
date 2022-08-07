@@ -43,8 +43,4 @@ const data = [
 ]
 
 my = "rishi";
-if(data.find(({name}) => name === 'hhhh')){
-    console.log(true);
-}else {
-    console.log(false);
-}
+console.log(format(new Date(), "yy-mm-dd HH:mm:ss"));

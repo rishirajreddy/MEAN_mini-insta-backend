@@ -9,6 +9,7 @@ exports.createPost =async(req,res) => {
     const url = req.protocol + "://" + req.get("host");
     const user = await User.findOne({username: req.decoded.username});
     const dp = user.get('profile.dp')
+    let currenTime = format(new Date(), "yy-mm-dd HH:mm:ss");
 
     Post.findOne({username: req.decoded.username})
     .then((user) => {
@@ -27,7 +28,7 @@ exports.createPost =async(req,res) => {
             });
             newPost.save()
             .then(() => {
-                res.status(200).json({msg:"POst added successfully"})
+                res.status(200).json({msg:"POst added successfully", date: currenTime})
             })
             .catch(err => {
                 console.log(err);
