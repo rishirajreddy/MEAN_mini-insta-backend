@@ -3,8 +3,8 @@ const {compareAsc, compareDesc} = require('date-fns');
 const { formatInTimeZone } = require('date-fns-tz');
 
 const startDate = new Date(); // (Sep 16 2020)
-const endDate = '2022-08-05 10:44:21'; // (Dec 25 2020)
-const distanceInWords = formatDistance(startDate,parseISO(endDate));
+const endDate = '2022-08-08 21:44:21'; // (Dec 25 2020)
+const current = '2022-08-08 20:44:21'
 // console.log(distanceInWords.substring(distanceInWords.indexOf(distanceInWords.match(/\d+/g))))
 // console.log(distanceInWords+" ago");
 // console.log(format(startDate, 'yy-MM-dd HH:mm:ss'));
@@ -13,8 +13,10 @@ let currenTime = new Date().getTime();
 
 
 const today = new Date();
-console.log(formatInTimeZone(today, 'America/New_York', 'yy-MM-dd HH:mm:ss'));
-
+const now = formatInTimeZone(new Date(), 'Asia/Kolkata', 'yyyy-MM-dd HH:mm:ss');
+const distanceInWords = formatDistance(parseISO(now),parseISO(endDate));
+console.log(distanceInWords);
+// console.log(parseISO(now));
 
 const after = {
     name: "Bull",
