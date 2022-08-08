@@ -39,7 +39,7 @@ const onError = error => {
     console.log("Listening on " + bind);
   };
 
-  const port = normalizePort(process.env.PORT || "5000");
+  const port = normalizePort(process.env.PORT || "3000");
   app.set("port", port);
 
 const server = http.createServer(app);

@@ -270,7 +270,10 @@ exports.getMyPosts = async(req,res) => {
 }
 
 exports.getPost = async(req,res) => {
-    Post.findOne({username:req.decoded.username})
+}
+
+exports.getOthersPost = async(req,res) => {
+    Post.findOne({"posts": {$elemMatch: {_id: req.params.id}}})
         .then((posts) => {
             if(!posts) {
                 res.status(404).json({msg:"No posts found!!"});
@@ -285,6 +288,7 @@ exports.getPost = async(req,res) => {
         .catch(err => {
             console.log(err);
         })
+
 }
 
 // exports.deleteComment = async(req,res) => {
