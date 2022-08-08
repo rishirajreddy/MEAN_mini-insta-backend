@@ -109,7 +109,7 @@ exports.updateProfile = async(req,res) => {
 }
 
 exports.getOthersProfile = async(req,res) => {
-    User.findOne({_id:req.params.id})
+    User.findOne({username: req.params.username})
                     .then((profile) => {
                         if(!profile) {
                             console.log("Profile is not available");

@@ -27,7 +27,7 @@ router.put(
 
 //get others profiles
 router.get(
-    "/profile/profileId/:id",
+    "/profile/profileId/:username",
     check_auth.checkToken,
     profileController.getOthersProfile);
 
