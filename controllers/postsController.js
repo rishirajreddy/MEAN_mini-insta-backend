@@ -3,6 +3,8 @@ const {Comment}  = require("../models/posts");
 const Profile  = require("../models/profile");
 const User = require("../models/user");
 const {format, compareDesc, parseISO} = require("date-fns");
+const { formatInTimeZone } = require('date-fns-tz');
+
 const _ = require("lodash");
 
 exports.createPost =async(req,res) => {
@@ -22,7 +24,7 @@ exports.createPost =async(req,res) => {
                     dp:dp,
                     title: req.body.title,
                     caption: req.body.caption,
-                    createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+                    createdAt: formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss'),
                     image: url + "/images/" + req.file.filename
                     }
             });
@@ -45,7 +47,7 @@ exports.createPost =async(req,res) => {
                             dp:dp,
                             title: req.body.title,
                             caption: req.body.caption,
-                            createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+                            createdAt: formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss'),
                             image: url + "/images/" + req.file.filename
                         }
                     }
@@ -76,7 +78,7 @@ exports.updatePost = async(req,res,next) => {
                     {_id: postId},
                     {$set: {"posts.$[element].title": req.body.title,
                             "posts.$[element].caption": req.body.caption,
-                            "posts.$[element].updatedAt": format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+                            "posts.$[element].updatedAt": formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss')
                 }},
                     {arrayFilters: [{"element._id": req.params.id}]},
 
@@ -212,7 +214,7 @@ exports.addComments = async(req,res) => {
                             const newComment = new Comment({
                                 name:username,
                                 comment: req.body.comment,
-                                commentedAt:format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+                                commentedAt:formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss')
                             })
                             post.posts.comments+=1;
                             console.log(newComment);

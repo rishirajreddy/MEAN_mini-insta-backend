@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const {format} = require("date-fns");
+const { formatInTimeZone } = require("date-fns-tz");
 
 const Comment = new mongoose.Schema({
     name: {
@@ -10,7 +11,7 @@ const Comment = new mongoose.Schema({
     }  ,
     commentedAt: {
         type:String,
-        default: format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+        default: formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss')
     }
 })
 
@@ -38,11 +39,11 @@ const Post = mongoose.Schema({
         },
         createdAt: {
             type:String,
-            default: format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+            default: formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss')
         },
         updatedAt: {
             type:String,
-            default : format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+            default : formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss')
         },
         likedBy: [
             {

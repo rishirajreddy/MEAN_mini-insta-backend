@@ -1,5 +1,6 @@
 const {formatDistance, format, parseISO} = require('date-fns');
 const {compareAsc, compareDesc} = require('date-fns');
+const { formatInTimeZone } = require('date-fns-tz');
 
 const startDate = new Date(); // (Sep 16 2020)
 const endDate = '2022-08-05 10:44:21'; // (Dec 25 2020)
@@ -10,9 +11,9 @@ const distanceInWords = formatDistance(startDate,parseISO(endDate));
 let tokenTime = 60*1000;
 let currenTime = new Date().getTime();
 
-// console.log(new Date().getTime());
 
 const today = new Date();
+console.log(formatInTimeZone(today, 'America/New_York', 'yy-MM-dd HH:mm:ss'));
 
 
 const after = {
@@ -43,4 +44,4 @@ const data = [
 ]
 
 my = "rishi";
-console.log(Date.now().toString());
+// console.log(Date.now().toString());
