@@ -30,30 +30,6 @@ exports.createProfile = async(req,res) => {
         }
         )
                   
-                    //     if(!user) {
-                    //         res.status(404).json({msg:"User not found!!"})
-                    //     }else {
-                    //         const url = req.protocol + "://" + req.get("host");
-                    //         console.log(user._id);
-                    //         const profile = new Profile({
-                    //             _id: user._id,
-                    //             username: req.decoded.username,
-                    //             name:req.body.name,
-                    //             bio: req.body.bio,
-                    //             dp: url + "/images/" + req.file.filename
-                    //         });
-                    //         profile.save()
-                    //         .then(() => {
-                    //             console.log(`Profile Added to username: ${req.decoded.username}`);
-                    //             res.status(200).json({
-                    //                 msg:`Profile Added to username: ${req.decoded.username}`,
-                    //                 profile: profile
-                    //             })
-                    //         })
-                    //         .catch(err => console.error(err));
-                    //     }
-                    // })
-                    // .catch(err => console.log(err));
 }
 
 exports.getProfile = (req,res) => {
@@ -139,7 +115,7 @@ exports.getOthersProfile = async(req,res) => {
                             console.log("Profile is not available");
                             res.status(404).json({msg:"Profile is not available for this user"})
                         }else {
-                            res.status(200).json({msg:"Profile available", profile: profile.profile})
+                            res.status(200).json({msg:"Profile available", profile: profile})
                         }
                     })
                     .catch(err => {
