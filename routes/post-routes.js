@@ -68,7 +68,7 @@ router.get(
 
 router.get(
     "/profile/others/posts/:username",
-    // check_auth.checkToken,
+    check_auth.checkToken,
     postController.getOthersPosts
 )
 
