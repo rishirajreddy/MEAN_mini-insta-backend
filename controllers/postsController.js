@@ -288,7 +288,22 @@ exports.getOthersPost = async(req,res) => {
         .catch(err => {
             console.log(err);
         })
+}
 
+exports.getOthersPosts = async(req,res) => {
+    Post.findOne({username:req.params.username})
+        .then((posts) => {
+            if(!posts) {
+                res.status(404).json({msg:"No Posts available"})
+            }else {
+                console.log("Fetched");
+                res.status(200).json(posts.posts)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({msg:err.message});
+        })
 }
 
 // exports.deleteComment = async(req,res) => {

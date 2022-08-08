@@ -66,6 +66,12 @@ router.get(
     postController.getOthersPost
 )
 
+router.get(
+    "/profile/others/posts/:username",
+    // check_auth.checkToken,
+    postController.getOthersPosts
+)
+
 // router.get(
 //     "/comments/:id",
 //     check_auth.checkToken,
