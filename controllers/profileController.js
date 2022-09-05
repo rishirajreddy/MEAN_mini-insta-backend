@@ -16,7 +16,7 @@ exports.createProfile = async(req,res) => {
 
     const file = req.file;
     const imgResult = (await updateProfile(file)).promise();
-    const url = req.protocol + "://" + req.get("host");
+    // const url = req.protocol + "://" + req.get("host");
     
     imgResult.then((img) => {
         User.findOneAndUpdate({username: req.decoded.username},
@@ -44,6 +44,30 @@ exports.createProfile = async(req,res) => {
             )
     })
 
+    const url = req.protocol + "://" + req.get("host");
+    User.findOneAndUpdate({username: req.decoded.username},
+        {
+            $set: {
+                profile: {
+                            username: req.decoded.username,
+                            name:req.body.name,
+                            email: email,
+                            bio: req.body.bio,
+                            dp: url + "/images/" + req.file.filename
+                }
+            }
+        },
+        (err, result) => {
+            if(err) {
+                console.log(err);
+                res.status(500).json({msg:"Unable to create profile"})
+            }else{ 
+                console.log(result);
+                res.status(200).json({msg:"Profile added"})
+            }
+        }
+        )
+                  
 }
 
 exports.getProfile = (req,res) => {
@@ -124,6 +148,32 @@ exports.updateProfile = async(req,res) => {
                 res.status(500).json({msg:"Couldn't update post"})
             })
     })
+    if(req.file){
+        const url = req.protocol + "://" + req.get("host");
+        imagePath = url + "/images/" + req.file.filename
+    }
+    User.updateOne({username: req.decoded.username},
+        {
+            $set: {
+                "profile.username": req.decoded.username,
+                "profile.name": req.body.name,
+                "profile.bio": req.body.bio,
+                "profile.dp": imagePath
+            }
+        }
+        )
+        .then((result) => {
+            if(result.matchedCount > 0){
+                res.status(200).json({msg:"Updated!!"})
+            }else {
+                res.status(500).json({msg:"Not authorized to update this post"})
+            }
+            console.log
+        })
+        .catch(err => {
+            console.log(err.message);
+            res.status(500).json({msg:"Couldn't update post"})
+        })
 }
 
 exports.getOthersProfile = async(req,res) => {

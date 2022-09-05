@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "aws-sdk": "^2.1209.0",
+=======
+>>>>>>> a43fb7fd857b6a4d738007fa80d1df6d63c4444c
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
@@ -23,6 +26,11 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.5.0",
+<<<<<<< HEAD
     "multer": "^1.4.5-lts.1"
+=======
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.19"
+>>>>>>> a43fb7fd857b6a4d738007fa80d1df6d63c4444c
   }
 }

@@ -16,6 +16,9 @@ const bucket_region = "<<bucke_region>>";
 const bucket_name = "<<bucke_name>>";
 
 
+
+const _ = require("lodash");
+
 exports.createPost =async(req,res) => {
     const url = req.protocol + "://" + req.get("host");
     const user = await User.findOne({username: req.decoded.username});
@@ -27,6 +30,7 @@ exports.createPost =async(req,res) => {
     const imgResult = (await uploadPost(file)).promise();
     imgResult.then((img) => {
         Post.findOne({username: req.decoded.username})
+    Post.findOne({username: req.decoded.username})
     .then((user) => {
         if(!user){
             //create new post with the username
@@ -39,7 +43,7 @@ exports.createPost =async(req,res) => {
                     caption: req.body.caption,
                     createdAt: formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss'),
                     image: `https://${bucket_name}.s3.${bucket_region}.amazonaws.com/${img.Key}`
-                    }
+     }
             });
             newPost.save()
             .then(() => {
@@ -62,7 +66,7 @@ exports.createPost =async(req,res) => {
                             caption: req.body.caption,
                             createdAt: formatInTimeZone(new Date(),'Asia/Kolkata' ,'yyyy-MM-dd HH:mm:ss'),
                             image: `https://${bucket_name}.s3.${bucket_region}.amazonaws.com/${img.Key}`
-                            // image: url + "/images/" + req.file.filename
+                            // image: url + "/images/" + req.file.filename                            // image: url + "/images/" + req.file.filename
                         }
                     }
                 }
@@ -79,8 +83,7 @@ exports.createPost =async(req,res) => {
         console.log(img.Key);
     })
     await unlinkFile(file.path);
-
-    }
+}
 
 exports.updatePost = async(req,res,next) => {
     const post = await Post.findOne({username: req.decoded.username});
